@@ -7,7 +7,7 @@ public final class Upgrades extends Addon {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getLogger().info("Upgrades staat aan! :)");
+        getLogger().info("Upgrades staat aan! :) yippeeee");
     }
 
     @Override
