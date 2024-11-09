@@ -5,7 +5,7 @@ range-upgrades:
   slot: 11
   levels:
     1:
-      range: 200
+      range: 201
     2:
       range: 300
       cost: 500
