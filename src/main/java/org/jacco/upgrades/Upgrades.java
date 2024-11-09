@@ -61,4 +61,8 @@ public final class Upgrades extends Addon {
         this.settings = new Settings(this);
         getLogger().info("Reloaded Upgrades settings.");
     }
+
+    public Settings getSettings() {
+        return settings;
+    }
 }

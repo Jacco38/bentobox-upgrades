@@ -1,6 +1,8 @@
 package org.jacco.upgrades.commands;
 
+import org.jacco.upgrades.Settings;
 import org.jacco.upgrades.Upgrades;
+import org.jacco.upgrades.ui.MainPanel;
 import world.bentobox.bentobox.api.commands.CompositeCommand;
 import world.bentobox.bentobox.api.user.User;
 import world.bentobox.bentobox.database.objects.Island;
@@ -38,7 +40,9 @@ public class UpgradesCommand extends CompositeCommand {
                 return false;
             }
 
-            user.sendMessage("Opening Upgrades Menu...");
+            MainPanel panel = new MainPanel((Upgrades) getAddon(), island);
+            panel.showPanel(user);
+
             return true;
         }
         this.showHelp(this, user);

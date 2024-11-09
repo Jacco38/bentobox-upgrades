@@ -2,20 +2,51 @@ disabled-gamemodes: []
 
 range-upgrades:
   enabled: true
-  max-level: 5
-  starting-cost: 500
-  default-range: 200
-  cost-increase: 200
+  slot: 11
+  levels:
+    1:
+      range: 200
+    2:
+      range: 300
+      cost: 500
+    3:
+      range: 400
+      cost: 1000
+    4:
+      range: 500
+      cost: 1500
+    5:
+      range: 600
+      cost: 2000
 
 member-upgrades:
   enabled: true
-  default-members: 2
-  max-members: 5
-  starting-cost: 500
-  cost-increase: 200
+  slot: 13
+  levels:
+    1:
+      members: 2
+    2:
+      members: 3
+      cost: 500
+    3:
+      members: 4
+      cost: 1000
 
 hopper-upgrades:
   enabled: true
-  max-level: 5
-  starting-cost: 500
-  cost-increase: 200
+  slot: 15
+  levels:
+    1:
+      hoppers: 1
+    2:
+      hoppers: 2
+      cost: 500
+    3:
+      hoppers: 3
+      cost: 700
+    4:
+      hoppers: 4
+      cost: 900
+    5:
+      hoppers: 5
+      cost: 1100

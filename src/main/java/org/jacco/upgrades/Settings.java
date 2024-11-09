@@ -18,4 +18,16 @@ public class Settings {
         return disabledGameModes;
     }
 
+    public int getRangeSlot() {
+        return this.addon.getConfig().getInt("range-upgrades.slot");
+    }
+
+    public int getMembersSlot() {
+        return this.addon.getConfig().getInt("member-upgrades.slot");
+    }
+
+    public int getHoppersSlot() {
+        return this.addon.getConfig().getInt("hopper-upgrades.slot");
+    }
+
 }
