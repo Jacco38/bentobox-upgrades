@@ -20,13 +20,13 @@ public class MainPanel extends Panel {
         this.addItem(new PanelItemBuilder()
                 .name("&rMembers Upgrades")
                 .icon(new ItemStack(Material.PLAYER_HEAD))
-                .description("Upgrade your island members limit.")
+                .description("Upgrade your island members limit.\nCurrent level: 1\nNext level cost: 1000")
                 .build(), addon.getSettings().getMembersSlot());
 
         this.addItem(new PanelItemBuilder()
                 .name("&rHopper Upgrades")
                 .icon(new ItemStack(Material.HOPPER))
-                .description("Upgrade your island hoppers limit.")
+                .description("Upgrade your island hoppers limit.\nCurrent level: 1\nNext level cost: 1000")
                 .build(), addon.getSettings().getHoppersSlot());
     }
 }
