@@ -68,7 +68,6 @@ public class UpgradesCommand extends CompositeCommand {
             user.sendMessage("You are not allowed to use this command on this island.");
             return false;
         }
-
         
         return true;
     }
