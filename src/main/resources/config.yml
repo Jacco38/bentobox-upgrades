@@ -1,0 +1,21 @@
+disabled-gamemodes: []
+
+range-upgrades:
+  enabled: true
+  max-level: 5
+  starting-cost: 500
+  default-range: 200
+  cost-increase: 200
+
+member-upgrades:
+  enabled: true
+  default-members: 2
+  max-members: 5
+  starting-cost: 500
+  cost-increase: 200
+
+hopper-upgrades:
+  enabled: true
+  max-level: 5
+  starting-cost: 500
+  cost-increase: 200
