@@ -69,6 +69,7 @@ public class UpgradesCommand extends CompositeCommand {
             return false;
         }
 
+        
         return true;
     }
 }
