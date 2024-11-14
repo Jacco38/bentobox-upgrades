@@ -1,5 +1,6 @@
 package org.jacco.upgrades;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Settings {
@@ -28,6 +29,36 @@ public class Settings {
 
     public int getHoppersSlot() {
         return this.addon.getConfig().getInt("hopper-upgrades.slot");
+    }
+
+    public ArrayList<String> getRangeUpgrades() {
+        ArrayList<String> upgrades = new ArrayList<>();
+
+        for (String key : this.addon.getConfig().getConfigurationSection("range-upgrades.levels").getKeys(false)) {
+            upgrades.add(key);
+        }
+
+        return upgrades;
+    }
+
+    public ArrayList<String> getMemberUpgrades() {
+        ArrayList<String> upgrades = new ArrayList<>();
+
+        for (String key : this.addon.getConfig().getConfigurationSection("member-upgrades.levels").getKeys(false)) {
+            upgrades.add(key);
+        }
+
+        return upgrades;
+    }
+
+    public ArrayList<String> getHopperUpgrades() {
+        ArrayList<String> upgrades = new ArrayList<>();
+
+        for (String key : this.addon.getConfig().getConfigurationSection("hopper-upgrades.levels").getKeys(false)) {
+            upgrades.add(key);
+        }
+
+        return upgrades;
     }
 
 }

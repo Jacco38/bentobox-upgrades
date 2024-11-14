@@ -9,7 +9,6 @@ import world.bentobox.bentobox.managers.RanksManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public final class Upgrades extends Addon {
 
@@ -28,6 +27,7 @@ public final class Upgrades extends Addon {
     public void onLoad() {
         super.onLoad();
         this.settings = new Settings(this);
+        this.addon = this;
     }
 
     @Override
@@ -48,6 +48,7 @@ public final class Upgrades extends Addon {
 
                     }
                 });
+        getLogger().info("Loaded Range Upgrades: " + settings.getRangeUpgrades());
     }
 
     @Override
@@ -59,10 +60,11 @@ public final class Upgrades extends Addon {
     public void onReload() {
         // Reload logic
         this.settings = new Settings(this);
-        getLogger().info("Reloaded Upgrades settings.");
+        getLogger().info("Reloaded Upgrades config.");
     }
 
     public Settings getSettings() {
         return settings;
     }
+
 }
