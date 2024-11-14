@@ -1,5 +1,7 @@
 package org.jacco.upgrades;
 
+import world.bentobox.bentobox.database.objects.Island;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -59,6 +61,13 @@ public class Settings {
         }
 
         return upgrades;
+    }
+
+    public double getIslandRange(Island island) {
+
+        String islandId = island.getUniqueId();
+
+        return 10;
     }
 
 }

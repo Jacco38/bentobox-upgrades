@@ -1,11 +1,15 @@
 package org.jacco.upgrades;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.jacco.upgrades.commands.UpgradesCommand;
+import org.jacco.upgrades.events.PlayerEvents;
 import world.bentobox.bentobox.api.addons.Addon;
+import world.bentobox.bentobox.api.addons.GameModeAddon;
 import world.bentobox.bentobox.api.flags.Flag;
 import world.bentobox.bentobox.api.flags.clicklisteners.CycleClick;
 import world.bentobox.bentobox.managers.RanksManager;
+import world.bentobox.bentobox.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +18,7 @@ public final class Upgrades extends Addon {
 
     private Settings settings;
     private Upgrades addon;
+    List<GameModeAddon> hookedGameModes = new ArrayList<GameModeAddon>();
 
     public final static Flag UPGRADES_RANK_RIGHT =
             new Flag.Builder("UPGRADES_RANK_RIGHT", Material.GOLD_INGOT)
@@ -33,15 +38,13 @@ public final class Upgrades extends Addon {
     @Override
     public void onEnable() {
 
-        List<String> hookedGameModes = new ArrayList<String>();
-
         // Plugin startup logic
         getPlugin().getAddonsManager().getGameModeAddons().stream()
                 .filter(g -> !settings.getDisabledGameModes().contains(g.getDescription().getName()))
                 .forEach(g -> {
                     if (g.getPlayerCommand().isPresent()) {
 
-                        hookedGameModes.add(g.getDescription().getName());
+                        hookedGameModes.add(g);
                         Upgrades.UPGRADES_RANK_RIGHT.addGameModeAddon(g);
 
                         new UpgradesCommand(this, g.getPlayerCommand().get());
@@ -49,6 +52,8 @@ public final class Upgrades extends Addon {
                     }
                 });
         getLogger().info("Loaded Range Upgrades: " + settings.getRangeUpgrades());
+
+        this.registerListener(new PlayerEvents(this));
     }
 
     @Override
@@ -65,6 +70,10 @@ public final class Upgrades extends Addon {
 
     public Settings getSettings() {
         return settings;
+    }
+
+    public boolean inGameWorld(World world) {
+        return hookedGameModes.stream().anyMatch(gm -> gm.inWorld(Util.getWorld(world)));
     }
 
 }
