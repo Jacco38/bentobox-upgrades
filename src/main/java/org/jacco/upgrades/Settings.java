@@ -70,4 +70,18 @@ public class Settings {
         return 10;
     }
 
+    public int getMemberLimit(Island island) {
+
+        String islandId = island.getUniqueId();
+
+        return 4;
+    }
+
+    public int getHopperLimit(Island island) {
+
+        String islandId = island.getUniqueId();
+
+        return 5;
+    }
+
 }

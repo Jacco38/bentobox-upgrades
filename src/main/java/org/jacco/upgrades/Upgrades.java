@@ -10,7 +10,6 @@ import world.bentobox.bentobox.api.flags.Flag;
 import world.bentobox.bentobox.api.flags.clicklisteners.CycleClick;
 import world.bentobox.bentobox.managers.RanksManager;
 import world.bentobox.bentobox.util.Util;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public final class Upgrades extends Addon {
 
     private Settings settings;
     private Upgrades addon;
-    List<GameModeAddon> hookedGameModes = new ArrayList<GameModeAddon>();
+    List<GameModeAddon> hookedGameModes = new ArrayList<>();
 
     public final static Flag UPGRADES_RANK_RIGHT =
             new Flag.Builder("UPGRADES_RANK_RIGHT", Material.GOLD_INGOT)
@@ -51,9 +50,9 @@ public final class Upgrades extends Addon {
 
                     }
                 });
-        getLogger().info("Loaded Range Upgrades: " + settings.getRangeUpgrades());
 
         this.registerListener(new PlayerEvents(this));
+
     }
 
     @Override

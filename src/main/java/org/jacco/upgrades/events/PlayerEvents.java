@@ -6,15 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.jacco.upgrades.Upgrades;
-import world.bentobox.bentobox.api.flags.Flag;
-import world.bentobox.bentobox.listeners.JoinLeaveListener;
 
-import java.util.Optional;
+import world.bentobox.limits.objects.IslandBlockCount;
 
 public class PlayerEvents implements Listener {
 
@@ -47,7 +42,9 @@ public class PlayerEvents implements Listener {
             double locationX = location.getX();
             double locationZ = location.getZ();
 
-            if (Math.abs(centerX - locationX) > addon.getSettings().getIslandRange(i) || Math.abs(centerZ - locationZ) > addon.getSettings().getIslandRange(i)) {
+            double range = addon.getSettings().getIslandRange(i);
+
+            if (Math.abs(centerX - locationX) > range || Math.abs(centerZ - locationZ) > range) {
                 event.setCancelled(true);
             }
 
@@ -78,8 +75,11 @@ public class PlayerEvents implements Listener {
             double toX = to.getX();
             double toZ = to.getZ();
 
-            if (Math.abs(centerX - toX) > (addon.getSettings().getIslandRange(i) + 10) || Math.abs(centerZ - toZ) > (addon.getSettings().getIslandRange(i) + 10)) {
+            double range = addon.getSettings().getIslandRange(i);
+
+            if (Math.abs(centerX - toX) > (range + 10) || Math.abs(centerZ - toZ) > (range + 10)) {
                 event.setCancelled(true);
+                return;
             }
 
         });

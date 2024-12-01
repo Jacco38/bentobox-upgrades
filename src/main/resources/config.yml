@@ -2,21 +2,22 @@ disabled-gamemodes: []
 
 range-upgrades:
   enabled: true
+  max-range: 500
   slot: 11
   levels:
     1:
-      range: 201
+      range: 50
     2:
-      range: 300
+      range: 100
       cost: 500
     3:
-      range: 400
+      range: 150
       cost: 1000
     4:
-      range: 500
+      range: 200
       cost: 1500
     5:
-      range: 600
+      range: 250
       cost: 2000
 
 member-upgrades:
@@ -37,16 +38,16 @@ hopper-upgrades:
   slot: 15
   levels:
     1:
-      hoppers: 1
+      hoppers: 5
     2:
-      hoppers: 2
+      hoppers: 12
       cost: 500
     3:
-      hoppers: 3
+      hoppers: 20
       cost: 700
     4:
-      hoppers: 4
+      hoppers: 30
       cost: 900
     5:
-      hoppers: 5
+      hoppers: 50
       cost: 1100
