@@ -29,6 +29,8 @@ public class RangeUpgradesMenu extends Panel{
         for (int i = 0; i < addon.getSettings().getRangeUpgrades().size(); i++) {
             String name = "&r&eLevel " + addon.getSettings().getRangeUpgrades().get(i);
 
+            //TODO: Current level of the upgrade
+
             PanelItem item = new PanelItemBuilder()
                     .name(name)
                     .icon(new ItemStack(Material.GLASS))

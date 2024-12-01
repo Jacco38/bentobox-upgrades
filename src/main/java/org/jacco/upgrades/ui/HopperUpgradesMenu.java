@@ -29,6 +29,8 @@ public class HopperUpgradesMenu extends Panel {
         for (int i = 0; i < addon.getSettings().getHopperUpgrades().size(); i++) {
             String name = "&r&eLevel " + addon.getSettings().getHopperUpgrades().get(i);
 
+            //TODO: Current level of the upgrade
+
             PanelItem item = new PanelItemBuilder()
                     .name(name)
                     .icon(new ItemStack(Material.HOPPER))

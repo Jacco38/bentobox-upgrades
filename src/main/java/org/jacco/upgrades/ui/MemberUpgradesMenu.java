@@ -29,6 +29,8 @@ public class MemberUpgradesMenu extends Panel{
         for (int i = 0; i < addon.getSettings().getMemberUpgrades().size(); i++) {
             String name = "&r&eLevel " + addon.getSettings().getMemberUpgrades().get(i);
 
+            //TODO: Current level of the upgrade
+
             PanelItem item = new PanelItemBuilder()
                     .name(name)
                     .icon(new ItemStack(Material.PLAYER_HEAD))

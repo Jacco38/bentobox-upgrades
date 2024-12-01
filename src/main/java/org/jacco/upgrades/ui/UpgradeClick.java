@@ -15,7 +15,7 @@ public class UpgradeClick implements PanelItem.ClickHandler {
 
     @Override
     public boolean onClick(Panel panel, User user, ClickType clickType, int slot) {
-
+        //TODO: Implement upgrade logic
         return false;
     }
 
