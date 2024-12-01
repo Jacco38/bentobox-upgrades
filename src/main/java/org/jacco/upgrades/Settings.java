@@ -63,6 +63,20 @@ public class Settings {
         return upgrades;
     }
 
+    public double getCurrentLevel(Island island, String upgrade) {
+
+        String islandId = island.getUniqueId();
+
+        return 1;
+    }
+
+    public double getUpgradeCost(Island island, String upgrade) {
+
+        String islandId = island.getUniqueId();
+
+        return 100;
+    }
+
     public double getIslandRange(Island island) {
 
         String islandId = island.getUniqueId();

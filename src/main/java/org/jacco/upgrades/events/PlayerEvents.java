@@ -8,8 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.jacco.upgrades.Upgrades;
+import world.bentobox.bentobox.api.events.team.TeamInviteEvent;
+import world.bentobox.bentobox.database.objects.Island;
 
-import world.bentobox.limits.objects.IslandBlockCount;
+import java.util.Map;
+import java.util.UUID;
 
 public class PlayerEvents implements Listener {
 
@@ -83,6 +86,21 @@ public class PlayerEvents implements Listener {
             }
 
         });
+    }
+
+    @EventHandler
+    public void onTeamInvite(TeamInviteEvent event) {
+        UUID playerUUID = event.getPlayerUUID();
+        Player player = Bukkit.getPlayer(playerUUID);
+
+        Island island = event.getIsland();
+
+        Map<UUID, Integer> members = island.getMembers();
+
+        if (members.size() >= addon.getSettings().getMemberLimit(island)) {
+            event.setCancelled(true);
+        }
+
     }
 
 }
