@@ -42,6 +42,8 @@ public class HopperUpgradesMenu extends Panel {
             if (i < currentLevel) {
                 item.setGlow(true);
                 item.setName(item.getName() + " UNLOCKED");
+            } else {
+                item.setClickHandler(new UpgradeClick(addon, "hopper", i + 1, island));
             }
 
             this.addItem(item, i);

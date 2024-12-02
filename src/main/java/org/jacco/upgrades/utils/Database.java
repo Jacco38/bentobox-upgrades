@@ -71,4 +71,12 @@ public class Database {
         return null;
     }
 
+    public void updateLevel(Island island, String upgrade, int level) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE islands SET " + upgrade + "_level = ? WHERE island_id = ?;")) {
+            preparedStatement.setInt(1, level);
+            preparedStatement.setString(2, island.getUniqueId().toString());
+            preparedStatement.executeUpdate();
+        }
+    }
+
 }

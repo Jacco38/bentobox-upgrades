@@ -42,6 +42,8 @@ public class MemberUpgradesMenu extends Panel{
             if (i < currentLevel) {
                 item.setGlow(true);
                 item.setName(item.getName() + " UNLOCKED");
+            } else {
+                item.setClickHandler(new UpgradeClick(addon, "member", i + 1, island));
             }
 
             this.addItem(item, i);
