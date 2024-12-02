@@ -26,6 +26,8 @@ public class HopperUpgradesMenu extends Panel {
                 .clickHandler(new CloseUI())
                 .build(), 26);
 
+        int currentLevel = addon.getSettings().getCurrentLevel(island, "hopper");
+
         for (int i = 0; i < addon.getSettings().getHopperUpgrades().size(); i++) {
             String name = "&r&eLevel " + addon.getSettings().getHopperUpgrades().get(i);
 
@@ -37,7 +39,7 @@ public class HopperUpgradesMenu extends Panel {
                     .description("Upgrade cost: " + addon.getConfig().getConfigurationSection("hopper-upgrades.levels." + addon.getSettings().getHopperUpgrades().get(i)).getInt("cost") + " Skycoins")
                     .build();
 
-            if (i == 0) {
+            if (i < currentLevel) {
                 item.setGlow(true);
                 item.setName(item.getName() + " UNLOCKED");
             }

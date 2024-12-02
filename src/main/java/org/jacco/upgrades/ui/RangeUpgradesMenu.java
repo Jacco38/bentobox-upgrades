@@ -26,6 +26,8 @@ public class RangeUpgradesMenu extends Panel{
                 .clickHandler(new CloseUI())
                 .build(), 26);
 
+        int currentLevel = addon.getSettings().getCurrentLevel(island, "range");
+
         for (int i = 0; i < addon.getSettings().getRangeUpgrades().size(); i++) {
             String name = "&r&eLevel " + addon.getSettings().getRangeUpgrades().get(i);
 
@@ -37,7 +39,7 @@ public class RangeUpgradesMenu extends Panel{
                     .description("Upgrade cost: " + addon.getConfig().getConfigurationSection("range-upgrades.levels." + addon.getSettings().getRangeUpgrades().get(i)).getInt("cost") + " Skycoins")
                     .build();
 
-            if (i == 0) {
+            if (i < currentLevel) {
                 item.setGlow(true);
                 item.setName(item.getName() + " UNLOCKED");
             }
