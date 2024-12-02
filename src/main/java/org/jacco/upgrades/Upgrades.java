@@ -1,19 +1,25 @@
 package org.jacco.upgrades;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.jacco.upgrades.commands.UpgradesCommand;
 import org.jacco.upgrades.events.PlayerEvents;
+import org.jacco.upgrades.utils.Database;
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.addons.GameModeAddon;
 import world.bentobox.bentobox.api.flags.Flag;
 import world.bentobox.bentobox.api.flags.clicklisteners.CycleClick;
 import world.bentobox.bentobox.managers.RanksManager;
 import world.bentobox.bentobox.util.Util;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Upgrades extends Addon {
+
+    private Database database;
 
     private Settings settings;
     private Upgrades addon;
@@ -53,11 +59,23 @@ public final class Upgrades extends Addon {
 
         this.registerListener(new PlayerEvents(this));
 
+        try {
+            this.database = new Database(getDataFolder().getAbsolutePath() + "/data.db");
+        } catch (SQLException e) {
+            getLogger().severe("Failed to connect to database.");
+            Bukkit.getPluginManager().disablePlugin(this.getPlugin());
+        }
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        try {
+            this.database.closeConnection();
+        } catch (SQLException e) {
+            getLogger().severe("Failed to close database connection.");
+        }
     }
 
     @Override
