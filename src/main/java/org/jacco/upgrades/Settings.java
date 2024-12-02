@@ -3,6 +3,7 @@ package org.jacco.upgrades;
 import world.bentobox.bentobox.database.objects.Island;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Settings {
@@ -63,39 +64,57 @@ public class Settings {
         return upgrades;
     }
 
-    public double getCurrentLevel(Island island, String upgrade) {
+    public int getCurrentLevel(Island island, String upgrade) {
 
-        String islandId = island.getUniqueId();
-
-        return 1;
+        try {
+            HashMap<String, Integer> levels = addon.getDatabase().getIslandLevels(island);
+            return levels.get(upgrade);
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
-    public double getUpgradeCost(Island island, String upgrade) {
+    public int getUpgradeCost(int currentLevel, String upgrade) {
 
-        String islandId = island.getUniqueId();
+        int nextLevel = currentLevel + 1;
 
-        return 100;
+        return this.addon.getConfig().getInt(upgrade + "-upgrades.levels." + nextLevel + ".cost");
     }
 
     public double getIslandRange(Island island) {
 
         String islandId = island.getUniqueId();
 
-        return 10;
+        try {
+            HashMap<String, Integer> levels = addon.getDatabase().getIslandLevels(island);
+            return this.addon.getConfig().getDouble("range-upgrades.levels." + levels.get("range") + ".range");
+        } catch (Exception e) {
+            return 10;
+        }
     }
 
     public int getMemberLimit(Island island) {
 
         String islandId = island.getUniqueId();
 
-        return 4;
+        try {
+            HashMap<String, Integer> levels = addon.getDatabase().getIslandLevels(island);
+            return levels.get("member");
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
     public int getHopperLimit(Island island) {
 
         String islandId = island.getUniqueId();
 
-        return 5;
+        try {
+            HashMap<String, Integer> levels = addon.getDatabase().getIslandLevels(island);
+            return levels.get("hopper");
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
 }

@@ -14,24 +14,28 @@ public class MainPanel extends Panel {
 
         Settings settings = addon.getSettings();
 
+        int currentRangeLevel = settings.getCurrentLevel(island, "range");
+        int currentMemberLevel = settings.getCurrentLevel(island, "member");
+        int currentHopperLevel = settings.getCurrentLevel(island, "hopper");
+
         this.addItem(new PanelItemBuilder()
                 .name("&r&eRange Upgrades")
                 .icon(new ItemStack(Material.GLASS))
-                .description("Upgrade your island hoppers limit.\nCurrent level: " + settings.getCurrentLevel(island, "range") + "\nNext level cost: " + settings.getUpgradeCost(island, "range"))
+                .description("Upgrade your island hoppers limit.\nCurrent level: " + currentRangeLevel + "\nNext level cost: " + settings.getUpgradeCost(currentRangeLevel, "range"))
                 .clickHandler(new PanelClick("openmenu", new RangeUpgradesMenu(addon, island, this)))
                 .build(), addon.getSettings().getRangeSlot());
 
         this.addItem(new PanelItemBuilder()
                 .name("&r&eMembers Upgrades")
                 .icon(new ItemStack(Material.PLAYER_HEAD))
-                .description("Upgrade your island hoppers limit.\nCurrent level: " + settings.getCurrentLevel(island, "members") + "\nNext level cost: " + settings.getUpgradeCost(island, "members"))
+                .description("Upgrade your island hoppers limit.\nCurrent level: " + currentMemberLevel + "\nNext level cost: " + settings.getUpgradeCost(currentMemberLevel, "member"))
                 .clickHandler(new PanelClick("openmenu", new MemberUpgradesMenu(addon, island, this)))
                 .build(), addon.getSettings().getMembersSlot());
 
         this.addItem(new PanelItemBuilder()
                 .name("&r&eHopper Upgrades")
                 .icon(new ItemStack(Material.HOPPER))
-                .description("Upgrade your island hoppers limit.\nCurrent level: " + settings.getCurrentLevel(island, "hopper") + "\nNext level cost: " + settings.getUpgradeCost(island, "hopper"))
+                .description("Upgrade your island hoppers limit.\nCurrent level: " + currentHopperLevel + "\nNext level cost: " + settings.getUpgradeCost(currentHopperLevel, "hopper"))
                 .clickHandler(new PanelClick("openmenu", new HopperUpgradesMenu(addon, island, this)))
                 .build(), addon.getSettings().getHoppersSlot());
 

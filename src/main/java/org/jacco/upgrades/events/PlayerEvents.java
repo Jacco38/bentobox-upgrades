@@ -8,11 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.jacco.upgrades.Upgrades;
-import world.bentobox.bentobox.api.events.team.TeamInviteEvent;
-import world.bentobox.bentobox.database.objects.Island;
-
-import java.util.Map;
-import java.util.UUID;
 
 public class PlayerEvents implements Listener {
 
@@ -82,7 +77,6 @@ public class PlayerEvents implements Listener {
 
             if (Math.abs(centerX - toX) > (range + 10) || Math.abs(centerZ - toZ) > (range + 10)) {
                 event.setCancelled(true);
-                return;
             }
 
         });
