@@ -64,7 +64,7 @@ public final class Upgrades extends Addon {
         this.registerListener(new TeamEvents(this));
 
         try {
-            this.database = new Database(getDataFolder().getAbsolutePath() + "/data.db");
+            this.database = new Database(getDataFolder().getAbsolutePath() + "/data.db", this);
         } catch (SQLException e) {
             getLogger().severe("Failed to connect to database.");
             Bukkit.getPluginManager().disablePlugin(this.getPlugin());
