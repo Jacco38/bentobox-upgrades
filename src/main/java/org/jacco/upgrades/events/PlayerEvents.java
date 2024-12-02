@@ -88,19 +88,4 @@ public class PlayerEvents implements Listener {
         });
     }
 
-    @EventHandler
-    public void onTeamInvite(TeamInviteEvent event) {
-        UUID playerUUID = event.getPlayerUUID();
-        Player player = Bukkit.getPlayer(playerUUID);
-
-        Island island = event.getIsland();
-
-        Map<UUID, Integer> members = island.getMembers();
-
-        if (members.size() >= addon.getSettings().getMemberLimit(island)) {
-            event.setCancelled(true);
-        }
-
-    }
-
 }

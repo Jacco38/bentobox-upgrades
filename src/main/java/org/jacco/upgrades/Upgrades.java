@@ -4,7 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.jacco.upgrades.commands.UpgradesCommand;
+import org.jacco.upgrades.events.IslandEvents;
 import org.jacco.upgrades.events.PlayerEvents;
+import org.jacco.upgrades.events.TeamEvents;
 import org.jacco.upgrades.utils.Database;
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.addons.GameModeAddon;
@@ -58,6 +60,8 @@ public final class Upgrades extends Addon {
                 });
 
         this.registerListener(new PlayerEvents(this));
+        this.registerListener(new IslandEvents(this));
+        this.registerListener(new TeamEvents(this));
 
         try {
             this.database = new Database(getDataFolder().getAbsolutePath() + "/data.db");
@@ -91,6 +95,10 @@ public final class Upgrades extends Addon {
 
     public boolean inGameWorld(World world) {
         return hookedGameModes.stream().anyMatch(gm -> gm.inWorld(Util.getWorld(world)));
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 
 }
