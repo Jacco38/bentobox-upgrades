@@ -4,6 +4,7 @@ import org.jacco.upgrades.Upgrades;
 import world.bentobox.bentobox.database.objects.Island;
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class Database {
 
@@ -40,11 +41,11 @@ public class Database {
         }
     }
 
-    public ResultSet getIsland(Island island) throws SQLException {
+    public boolean getIsland(Island island) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM islands WHERE island_id = ?;")) {
             preparedStatement.setString(1, island.getUniqueId().toString());
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet;
+            return resultSet.next();
         }
     }
 
@@ -53,6 +54,21 @@ public class Database {
             preparedStatement.setString(1, island.getUniqueId().toString());
             preparedStatement.executeUpdate();
         }
+    }
+
+    public HashMap<String, Integer> getIslandLevels(Island island) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM islands WHERE island_id = ?;")) {
+            preparedStatement.setString(1, island.getUniqueId().toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                HashMap<String, Integer> levels = new HashMap<>();
+                levels.put("range", resultSet.getInt("range_level"));
+                levels.put("hopper", resultSet.getInt("hopper_level"));
+                levels.put("member", resultSet.getInt("member_level"));
+                return levels;
+            }
+        }
+        return null;
     }
 
 }
